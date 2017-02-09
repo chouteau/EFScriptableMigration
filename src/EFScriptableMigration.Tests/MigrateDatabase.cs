@@ -2,6 +2,8 @@
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
+using NFluent;
+
 namespace EFScriptableMigration.Tests
 {
 	[TestClass]
@@ -32,6 +34,8 @@ namespace EFScriptableMigration.Tests
 			db.SaveChanges();
 
 			var m = db.MyModels.First();
+
+			Check.That(m).IsNotNull();
 		}
 	}
 }

@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFScriptableMigration", "EFScriptableMigration.csproj", "{5C03C956-88F8-4D09-940D-EADFBC7D6281}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFScriptableMigration", "src\EFScriptableMigration\EFScriptableMigration.csproj", "{5C03C956-88F8-4D09-940D-EADFBC7D6281}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFScriptableMigration.Tests", "..\EFScriptableMigration.Tests\EFScriptableMigration.Tests.csproj", "{BED9B241-C589-4EEA-B98B-F020B50D40CA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFScriptableMigration.Tests", "src\EFScriptableMigration.Tests\EFScriptableMigration.Tests.csproj", "{BED9B241-C589-4EEA-B98B-F020B50D40CA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E71048EC-960B-4ECD-BB82-28981A7D6F03}"
 	ProjectSection(SolutionItems) = preProject
-		..\..\README.md = ..\..\README.md
+		changelog.md = changelog.md
+		license.md = license.md
+		README.md = README.md
 	EndProjectSection
 EndProject
 Global
