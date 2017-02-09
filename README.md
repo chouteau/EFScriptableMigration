@@ -2,7 +2,7 @@
 
 ## About
 
-**EFScriptableMigration** permet de réaliser une migration de schema sql via des scripts sql qui sont embarqués dans les assemblies et ecrits à la main.
+**EFScriptableMigration** allows to migrate sql schema via sql scripts that are embedded in assemblies and written manually.
 
 ## Where can I get it ?
 
@@ -18,9 +18,9 @@ var migration = new EFScriptableMigration.ScriptableMigration<MyDbContext>("_mys
 System.Data.Entity.Database.SetInitializer<MyDbContext>(migration);
 ```
 
-In your assembly creation folder named /Scripts
+In assembly contains DbContext create folder named /Scripts
 
-Add sql script file like this :
+Add sql script file as **embedded resource** with name "**001-scriptname.sql**" like this :
 ```sql
 if exists(select * from sysobjects where name = 'MyModel' and xtype = 'U')
 Begin
