@@ -9,6 +9,11 @@ namespace EFScriptableMigration
 {
 	internal class SchemaDbContext : DbContext
 	{
+		public SchemaDbContext()
+		{
+
+		}
+
 		public SchemaDbContext(string nameOrConnectionString, string schemaTable)
 			: base(nameOrConnectionString)
 		{

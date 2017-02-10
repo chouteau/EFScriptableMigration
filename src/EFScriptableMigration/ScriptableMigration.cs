@@ -34,9 +34,17 @@ namespace EFScriptableMigration
 		{
 			Database.SetInitializer<TContext>(null);
 
-			var migration = new System.Data.Entity.CreateDatabaseIfNotExists<SchemaDbContext>();
-			Database.SetInitializer<SchemaDbContext>(migration);
 			SchemaDbContext = new SchemaDbContext(context.Database.Connection.ConnectionString, SchemaTableName);
+			Database.SetInitializer<SchemaDbContext>(null);
+			if (!context.Database.Exists())
+			{
+				var migration = new CreateDatabaseIfNotExists<SchemaDbContext>();
+				Database.SetInitializer(migration);
+			}
+			else
+			{
+				CreateSchemaTableIfNotExist();
+			}
 
 			var currentDbSchemaId = GetSchemaId();
 			var patchList = GetSqlPatchList();
@@ -51,6 +59,33 @@ namespace EFScriptableMigration
 			}
 
 			ApplyPatchs(currentDbSchemaId + 1, patchList);
+		}
+
+		private void CreateSchemaTableIfNotExist()
+		{
+			if (SchemaTableName.IndexOf("'") != -1)
+			{
+				throw new Exception("SchemaTableName with quote symbol was denied");
+			}
+			var createScript = @"
+if not exists(select name from sysobjects where name = '@SchemaTableName' and xtype = 'U')
+Begin
+
+	Create table dbo.[@SchemaTableName] (
+		Id int not null
+		, CreationDate DateTime2 not null
+		, Name varchar(100) not null
+		, Script varchar(max) not null
+	)
+
+	alter table dbo.[@SchemaTableName] add constraint PK_@SchemaTableName_Id primary key (Id)
+
+	Create unique index IX_@SchemaTableName_Id on [@SchemaTableName](Id)
+End
+";
+			createScript = createScript.Replace("@SchemaTableName", SchemaTableName);
+			SchemaDbContext.Database.ExecuteSqlCommand(createScript);
+
 		}
 
 		private int GetSchemaId()

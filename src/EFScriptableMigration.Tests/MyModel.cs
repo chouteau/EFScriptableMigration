@@ -12,5 +12,6 @@ namespace EFScriptableMigration.Tests
 		public string Name { get; set; }
 		public DateTime CreationDate { get; set; }
 		public bool Ready { get; set; }
+		public string NewProperty { get; set; }
 	}
 }
