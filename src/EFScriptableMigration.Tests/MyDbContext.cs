@@ -10,6 +10,12 @@ namespace EFScriptableMigration.Tests
 {
 	public class MyDbContext : DbContext
 	{
+		public MyDbContext(string connectionString)
+			: base(connectionString)
+		{
+
+		}
+
 		public MyDbContext()
 			: base("name=TEST")
 		{
