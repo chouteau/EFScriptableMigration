@@ -13,15 +13,17 @@ namespace EFScriptableMigration
 	public class ScriptableMigration<TContext> : IDatabaseInitializer<TContext>
 		where TContext : DbContext
 	{
-		public ScriptableMigration(string schemaTableName, string embededScriptNameSpace)
+		protected DbMigrationConfig DbMigrationConfig { get; set; }
+		public ScriptableMigration(DbMigrationConfig config)
 		{
-			MigrationService.Current.Add<TContext>(schemaTableName, embededScriptNameSpace);
+			DbMigrationConfig = config;
 		}
 
 		public void InitializeDatabase(TContext context)
 		{
 			Database.SetInitializer<TContext>(null);
-			MigrationService.Current.Process(context);
+			var sqlScriptMigration = new SqlScriptMigration();
+			sqlScriptMigration.Run(DbMigrationConfig);
 		}
 	}
 }

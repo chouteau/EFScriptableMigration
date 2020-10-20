@@ -10,6 +10,7 @@ using System.IO;
 
 namespace EFScriptableMigration
 {
+	[Obsolete("Use SqlScriptMigration instead", true)]
 	internal class MigrationService
 	{
 		private static Lazy<MigrationService> m_LazyMigrationService = new Lazy<MigrationService>(() =>
