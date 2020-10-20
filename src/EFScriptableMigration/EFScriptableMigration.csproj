@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DbMigrationConfig.cs" />
     <Compile Include="DiagnosticsLogger.cs" />
     <Compile Include="ILogger.cs" />
     <Compile Include="Migration.cs" />
@@ -58,6 +59,7 @@
     <Compile Include="ScriptableMigration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SqlPatch.cs" />
+    <Compile Include="SqlScriptMigration.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
