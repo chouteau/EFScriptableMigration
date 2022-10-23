@@ -7,11 +7,15 @@
 		<IncludeSymbols>true</IncludeSymbols>
 		<PublishRepositoryUrl>true</PublishRepositoryUrl>
 		<EmbedUntrackedSources>true</EmbedUntrackedSources>
-		<Version>6.0.1.0</Version>
+		<Version>6.0.2.0</Version>
 		<PackageReleaseNotes>
+			6.0.2.0 Change documentation
 			6.0.1.0 Dotnet 6 migration
 		</PackageReleaseNotes>
 		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+		<Description>
+			EFScriptableMigration allows to migrate sql schema via sql scripts that are embedded in assemblies and written manually.
+		</Description>
 	</PropertyGroup>
 	<ItemGroup>
 	  <PackageReference Include="Microsoft.Data.SqlClient" Version="5.0.1" />

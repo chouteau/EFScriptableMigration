@@ -8,7 +8,7 @@
 
 First, [install Nuget](http://docs.nuget.org/docs/start-here/installing-nuget) then, install [EFScriptableMigration](https://www.nuget.org/packages/EFScriptableMigration/) from the package manager console.
 
-> PM> Install-Package EFScriptableMigration
+> PM> dotnet add package EFScriptableMigration --version 6.0.1
 
 ## Usages :
 
