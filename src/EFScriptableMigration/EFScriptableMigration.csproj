@@ -11,6 +11,7 @@
 		<PackageReleaseNotes>
 			6.0.1.0 Dotnet 6 migration
 		</PackageReleaseNotes>
+		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
 	</PropertyGroup>
 	<ItemGroup>
 	  <PackageReference Include="Microsoft.Data.SqlClient" Version="5.0.1" />
