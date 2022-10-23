@@ -1,33 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity;
-using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
+using Microsoft.EntityFrameworkCore;
 
 namespace EFScriptableMigration.Tests
 {
 	public class MyDbContext : DbContext
 	{
+		private readonly string _connectionString;
+
 		public MyDbContext(string connectionString)
-			: base(connectionString)
 		{
-
+			this._connectionString = connectionString;
 		}
 
-		public MyDbContext()
-			: base("name=TEST")
+		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 		{
-
+			optionsBuilder.EnableSensitiveDataLogging();
+			optionsBuilder.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
+			optionsBuilder.UseSqlServer(_connectionString);
+			base.OnConfiguring(optionsBuilder);
 		}
-
-		public IDbSet<MyModel> MyModels { get; set; }
-
-		protected override void OnModelCreating(DbModelBuilder modelBuilder)
-		{
-			base.OnModelCreating(modelBuilder);
-			modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
-		}
+		public DbSet<MyModel> MyModels { get; set; }
 	}
 }
