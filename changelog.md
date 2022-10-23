@@ -1,3 +1,6 @@
+## 6.0.1.0
+- Migration to Dotnet6
+
 ## 1.1.4.0
 - Fix Scriptable Migration not thread safe with many DbContexts
 - Remove SchemaDbContext type
