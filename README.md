@@ -12,13 +12,7 @@ First, [install Nuget](http://docs.nuget.org/docs/start-here/installing-nuget) t
 
 ## Usages :
 
-Set initializer for any DbContext with scriptable migration like this :
-```c#
-var migration = new EFScriptableMigration.ScriptableMigration<MyDbContext>("_myschema");
-System.Data.Entity.Database.SetInitializer<MyDbContext>(migration);
-```
-
-In assembly contains DbContext create folder named /Scripts
+In assembly contains DbContext create folder named /Scripts/{SchemaName}
 
 Add sql script file as **embedded resource** with name "**001-scriptname.sql**" like this :
 ```sql
@@ -55,18 +49,33 @@ Create your DbContext
 ```c#
 public class MyDbContext : DbContext
 {
-	public MyDbContext()
-		: base("name=TEST")
-	{
+	private readonly string _connectionString;
 
+	public MyDbContext(string connectionString)
+	{
+		this._connectionString = connectionString;
 	}
 
-	public IDbSet<MyModel> MyModels { get; set; }
-
-	protected override void OnModelCreating(DbModelBuilder modelBuilder)
+	protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 	{
-		base.OnModelCreating(modelBuilder);
-		modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+		optionsBuilder.EnableSensitiveDataLogging();
+		optionsBuilder.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
+		optionsBuilder.UseSqlServer(_connectionString);
+		base.OnConfiguring(optionsBuilder);
 	}
+	public DbSet<MyModel> MyModels { get; set; }
 }
+```
+
+Create the migration an start it !
+
+```c#
+var migration = new DbMigration
+{
+	ConnectionString = _connectionString,
+    SchemaName = "All",
+    EmbededTypeReference = typeof(TypeInAsssemblyContainsEmbededScripts)
+}
+
+migration.Start();
 ```
