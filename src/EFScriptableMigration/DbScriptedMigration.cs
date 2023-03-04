@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
-using Microsoft.Data.SqlClient;
+using System.Data.SqlClient;
 
 namespace EFScriptableMigration;
 
@@ -222,11 +222,20 @@ End
                 break;
             }
 
-            var cmd = cnx.CreateCommand();
-            cmd.Transaction = ts;
-            cmd.CommandType = System.Data.CommandType.Text;
-            cmd.CommandText = sql;
-            await cmd.ExecuteNonQueryAsync();
+            try
+            {
+                var cmd = cnx.CreateCommand();
+                cmd.Transaction = ts;
+                cmd.CommandType = System.Data.CommandType.Text;
+                cmd.CommandText = sql;
+                await cmd.ExecuteNonQueryAsync();
+            }
+            catch(Exception ex)
+            {
+                ex.Data["script"] = script.Name;
+                ex.Data["sql"] = sql;
+                throw ex;
+            }
         }
 
         reader.Close();
