@@ -1,24 +1,24 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-	<PropertyGroup>
-		<TargetFramework>net6.0</TargetFramework>
-		<OutputType>Library</OutputType>
-		<PackageId>EFScriptableMigration</PackageId>
-		<PackageProjectUrl>https://github.com/chouteau/EFScriptableMigration</PackageProjectUrl>
-		<IncludeSymbols>true</IncludeSymbols>
-		<PublishRepositoryUrl>true</PublishRepositoryUrl>
-		<EmbedUntrackedSources>true</EmbedUntrackedSources>
-		<Version>6.0.3.0</Version>
-		<PackageReleaseNotes>
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <OutputType>Library</OutputType>
+    <PackageId>EFScriptableMigration</PackageId>
+    <PackageProjectUrl>https://github.com/chouteau/EFScriptableMigration</PackageProjectUrl>
+    <IncludeSymbols>true</IncludeSymbols>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <Version>6.0.3.0</Version>
+    <PackageReleaseNotes>
 			6.0.3.0 More logs
 			6.0.2.0 Change documentation
 			6.0.1.0 Dotnet 6 migration
 		</PackageReleaseNotes>
-		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-		<Description>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <Description>
 			EFScriptableMigration allows to migrate sql schema via sql scripts that are embedded in assemblies and written manually.
 		</Description>
-	</PropertyGroup>
-	<ItemGroup>
-	  <PackageReference Include="System.Data.SqlClient" Version="4.8.4" />
-	</ItemGroup>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
+  </ItemGroup>
 </Project>

@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace EFScriptableMigration;
+﻿namespace EFScriptableMigration;
 
 public sealed class SqlScript
 {
-    public int Version { get; set; }
-    public string Name { get; set; }
-    public string Content { get; set; }
-    internal string Hash { get; set; }
+	public int Version { get; set; }
+	public string Name { get; set; }
+	public string Content { get; set; }
+	internal string Hash { get; set; }
 }
