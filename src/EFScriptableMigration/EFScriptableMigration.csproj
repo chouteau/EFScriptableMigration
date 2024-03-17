@@ -7,8 +7,9 @@
     <IncludeSymbols>true</IncludeSymbols>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
-    <Version>6.0.3.0</Version>
+    <Version>8.0.4.0</Version>
     <PackageReleaseNotes>
+			8.0.4.0 Migration dotnet8
 			6.0.3.0 More logs
 			6.0.2.0 Change documentation
 			6.0.1.0 Dotnet 6 migration
